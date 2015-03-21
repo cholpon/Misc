@@ -75,7 +75,43 @@ public class Exercise {
 		if (smaller_str.length() != bigger_str.length()) {
 			res = res + bigger_str.substring(smaller_str.length());
 		}
-		//System.out.println(res);
+		// System.out.println(res);
 		return res;
+	}
+
+	public int maxBlock(String str) {
+		int cur_count = 0;
+		int alternative_count = 0;
+		char direct_prev = str.charAt(0);
+
+		for (int i = 1; i < str.length(); i++) {
+
+			if (str.charAt(i) == direct_prev) {
+				cur_count++;
+			} else {
+				// prev character and current character are not the same
+				if (alternative_count > cur_count) {
+					// current count is smaller, we can reset it to count new
+					// character
+					cur_count = 1;
+					direct_prev = str.charAt(i);
+				} else {
+					// alternative count is smaller or equal, 
+					// save cur_count in alternative_count
+					// reset cur_count to 1;
+					alternative_count = cur_count;
+					cur_count = 1;
+					direct_prev = str.charAt(i);
+				}
+			}
+		}
+
+		if (cur_count >= alternative_count) {
+			//System.out.println("Printing cur_count " + cur_count + " " + direct_prev);
+			return cur_count;
+		} else {
+			//System.out.println("Printing alternative_count " + alternative_count + " " + direct_prev);
+			return alternative_count;
+		}
 	}
 }

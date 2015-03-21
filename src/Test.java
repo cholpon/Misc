@@ -72,4 +72,14 @@ public class Test {
 		assertEquals ("xTxhxexre", ex_object.concatStrings(a3, b2));
 
 	}
+	
+	@org.junit.Test
+	public void testMaxBlock() {
+		assertEquals (3, ex_object.maxBlock("abbccc"));
+		assertEquals (5, ex_object.maxBlock("abbcccddddeeeee"));
+		assertEquals (4, ex_object.maxBlock("xxyyxxzzzz"));
+		assertEquals (3, ex_object.maxBlock("ababbbcccaaa"));
+		assertEquals (6, ex_object.maxBlock("Makkkkjjjjjj"));
+		assertEquals (7, ex_object.maxBlock("Majjjjjjjddnnmmiiiiii"));
+	}
 }
