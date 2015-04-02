@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Exercise {
 
 	public void printNumbers() {
@@ -96,7 +101,7 @@ public class Exercise {
 					cur_count = 1;
 					direct_prev = str.charAt(i);
 				} else {
-					// alternative count is smaller or equal, 
+					// alternative count is smaller or equal,
 					// save cur_count in alternative_count
 					// reset cur_count to 1;
 					alternative_count = cur_count;
@@ -107,11 +112,37 @@ public class Exercise {
 		}
 
 		if (cur_count >= alternative_count) {
-			//System.out.println("Printing cur_count " + cur_count + " " + direct_prev);
+			// System.out.println("Printing cur_count " + cur_count + " " +
+			// direct_prev);
 			return cur_count;
 		} else {
-			//System.out.println("Printing alternative_count " + alternative_count + " " + direct_prev);
+			// System.out.println("Printing alternative_count " +
+			// alternative_count + " " + direct_prev);
 			return alternative_count;
 		}
+	}
+
+	public boolean findPattern(String line, String pattern) {
+
+		if (line.contains(pattern)) {
+			return true;
+		}
+		return false;
+	}
+
+	public void printPattern(String fileName, String pattern)
+			throws IOException {
+
+		BufferedReader br = null;
+		String sCurrentLine;
+
+		br = new BufferedReader(new FileReader(fileName));
+
+		while ((sCurrentLine = br.readLine()) != null) {
+			if (findPattern(sCurrentLine, pattern)) {
+				System.out.println(sCurrentLine);
+			}
+		}
+		br.close();
 	}
 }
